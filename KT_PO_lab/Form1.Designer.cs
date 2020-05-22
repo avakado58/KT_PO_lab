@@ -144,7 +144,7 @@
             this.Controls.Add(this.butFromFile);
             this.Controls.Add(this.butGenerate);
             this.Name = "MainForm";
-            this.Text = "2 no vsy odna";
+            this.Text = "Качество и тестирование  ПО";
             this.ResumeLayout(false);
             this.PerformLayout();
 
