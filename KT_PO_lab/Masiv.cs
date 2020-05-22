@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
+using System.Windows.Forms;
 
 namespace KT_PO_lab
 {
@@ -14,6 +12,11 @@ namespace KT_PO_lab
         private int Ak = 0;
         private int[] A;
         private bool flagPerform = false;
+        public void FlagPerformChangeOnTrue()
+        {
+            flagPerform = true;
+            A = null;
+        }
         public void Generate()
         {
             Value = "";
@@ -32,6 +35,10 @@ namespace KT_PO_lab
         {
             if(flagPerform)
             {
+                if(A==null)
+                {
+                    FillMasA();
+                }
                 Value = "";
                 for (int i = 0; i < A.Length; i++)
                 {
@@ -59,9 +66,82 @@ namespace KT_PO_lab
            
             
         }
+        private void FillMasA()
+        {
+            int count = 0;
+            for (int i = 0; i < Value.Length; i++)
+            {
+                if (char.IsDigit(Value[i]))
+                {
+                    if (i == Value.Length - 1)
+                    {
+                        count++;
+                    }
+                    else
+                    {
+                        if (!char.IsDigit(Value[i + 1]))
+                        {
+                            count++;
+                            i++;
+                        }
+
+                    }
+
+                }
+            }
+            A = new int[count];
+            string buf = "";
+            for (int i = 0, j = 0; i < Value.Length; i++)
+            {
+                buf += Value[i];
+                if (char.IsDigit(Value[i]))
+                {
+                    if (i == Value.Length - 1)
+                    {
+                        A[j] = Convert.ToInt32(buf);
+                        buf = "";
+                        j++;
+                        i++;
+                    }
+                    else
+                    {
+                        if (!char.IsDigit(Value[i + 1]))
+                        {
+                            A[j] = Convert.ToInt32(buf);
+                            buf = "";
+                            j++;
+                            i++;
+                        }
+
+                    }
+
+                }
+            }
+            K = r.Next(1, A.Length);
+            Ak = A[K - 1];
+        }
         public bool LoadFromFile()
         {
-            throw new NotImplementedException();
+            
+            flagPerform = true;
+            string path = "";
+            using (OpenFileDialog open = new OpenFileDialog())
+            {
+
+                if (open.ShowDialog() == DialogResult.OK)
+                {
+                    path = open.FileName;
+                    using (StreamReader reader = new StreamReader(path))
+                    {
+                        Value = reader.ReadToEnd();
+                        
+                    }
+                    FillMasA();
+                }
+            }
+            
+            flagPerform = true;
+            return false;
         }
     }
 }

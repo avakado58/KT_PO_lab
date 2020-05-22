@@ -37,6 +37,7 @@
             this.onTheScreen = new System.Windows.Forms.RadioButton();
             this.inFile = new System.Windows.Forms.RadioButton();
             this.ValueK = new System.Windows.Forms.Label();
+            this.butActInput = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // butGenerate
@@ -65,6 +66,7 @@
             this.textBoxOriginal.Location = new System.Drawing.Point(12, 103);
             this.textBoxOriginal.Multiline = true;
             this.textBoxOriginal.Name = "textBoxOriginal";
+            this.textBoxOriginal.ReadOnly = true;
             this.textBoxOriginal.Size = new System.Drawing.Size(423, 116);
             this.textBoxOriginal.TabIndex = 2;
             // 
@@ -130,12 +132,23 @@
             this.ValueK.TabIndex = 8;
             this.ValueK.Text = "Значение К";
             // 
+            // butActInput
+            // 
+            this.butActInput.BackColor = System.Drawing.Color.DarkKhaki;
+            this.butActInput.Location = new System.Drawing.Point(159, 12);
+            this.butActInput.Name = "butActInput";
+            this.butActInput.Size = new System.Drawing.Size(128, 49);
+            this.butActInput.TabIndex = 9;
+            this.butActInput.Text = "Активировать ручной ввод";
+            this.butActInput.UseVisualStyleBackColor = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkSlateGray;
             this.ClientSize = new System.Drawing.Size(448, 494);
+            this.Controls.Add(this.butActInput);
             this.Controls.Add(this.ValueK);
             this.Controls.Add(this.inFile);
             this.Controls.Add(this.onTheScreen);
@@ -163,6 +176,7 @@
         private System.Windows.Forms.RadioButton onTheScreen;
         private System.Windows.Forms.RadioButton inFile;
         private System.Windows.Forms.Label ValueK;
+        private System.Windows.Forms.Button butActInput;
     }
 }
 
