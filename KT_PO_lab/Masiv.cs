@@ -14,7 +14,16 @@ namespace KT_PO_lab
         private int Ak = 0;
         public void Generate()
         {
-            throw new NotImplementedException();
+            Value = "";
+            int[] A = new int[r.Next(1, 10)];
+            for (int i = 0; i < A.Length; i++)
+            {
+                A[i] = r.Next(-20, 20);
+                Value += A[i] + " ";
+
+            }
+            K = r.Next(1, A.Length);
+            Ak = A[K - 1];
 
         }
         public void Perform()

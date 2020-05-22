@@ -21,7 +21,10 @@ namespace KT_PO_lab
         private void ButGenerate_Click(object sender, System.EventArgs e)
         {
 
-            throw new System.NotImplementedException();
+            Masiv.Generate();
+            textBoxOriginal.Clear();
+            textBoxOriginal.Text = Masiv.Value;
+            ValueK.Text = "Значение К " + Masiv.K;
         }
 
         private void ButFromFile_Click(object sender, System.EventArgs e)
