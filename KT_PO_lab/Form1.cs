@@ -15,7 +15,9 @@ namespace KT_PO_lab
 
         private void ButPerform_Click(object sender, System.EventArgs e)
         {
-            throw new System.NotImplementedException();
+            Masiv.Perform();
+            textBoxPerform.Clear();
+            textBoxPerform.Text = Masiv.Value;
         }
 
         private void ButGenerate_Click(object sender, System.EventArgs e)

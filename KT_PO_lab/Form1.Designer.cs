@@ -61,6 +61,7 @@
             // 
             // textBoxOriginal
             // 
+            this.textBoxOriginal.BackColor = System.Drawing.Color.CadetBlue;
             this.textBoxOriginal.Location = new System.Drawing.Point(12, 103);
             this.textBoxOriginal.Multiline = true;
             this.textBoxOriginal.Name = "textBoxOriginal";
@@ -89,6 +90,7 @@
             // 
             // textBoxPerform
             // 
+            this.textBoxPerform.BackColor = System.Drawing.Color.CadetBlue;
             this.textBoxPerform.Location = new System.Drawing.Point(12, 319);
             this.textBoxPerform.Multiline = true;
             this.textBoxPerform.Name = "textBoxPerform";
