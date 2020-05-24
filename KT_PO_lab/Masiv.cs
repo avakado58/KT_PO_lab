@@ -11,11 +11,43 @@ namespace KT_PO_lab
         public int K { get; set; }
         private int Ak = 0;
         private int[] A;
+        private bool flagGenerate = false;
         private bool flagPerform = false;
         public void FlagPerformChangeOnTrue()
         {
-            flagPerform = true;
-            A = null;
+            if(Check(Value))
+            {
+                flagPerform = true;
+                flagGenerate = false;
+            }
+            
+        }
+        private bool Check(string Value)
+        {
+            string leksem = "";
+            for (int i = 0; i < Value.Length; i++)
+            {
+               if(char.IsDigit(Value[i]))
+                {
+                    leksem += '1';
+                }
+               else if(Value[i]==' ')
+                {
+                    leksem += '2';
+                }
+               else if(Value[i]=='-')
+                {
+                    leksem += '3';
+                }
+               else
+                {
+                    leksem += '0';
+                    MessageBox.Show("Ошибка!!!1!11!\nНекорректные символы ");
+                    return false;
+                }
+
+            }
+            return true;
         }
         public void Generate()
         {
@@ -30,12 +62,13 @@ namespace KT_PO_lab
             K = r.Next(1, A.Length);
             Ak = A[K - 1];
             flagPerform = true;
+            flagGenerate = true;
         }
         public void Perform()
         {
             if(flagPerform)
             {
-                if(A==null)
+               if(!flagGenerate)
                 {
                     FillMasA();
                 }
@@ -122,8 +155,7 @@ namespace KT_PO_lab
         }
         public bool LoadFromFile()
         {
-            
-            flagPerform = true;
+                      
             string path = "";
             using (OpenFileDialog open = new OpenFileDialog())
             {
@@ -131,16 +163,34 @@ namespace KT_PO_lab
                 if (open.ShowDialog() == DialogResult.OK)
                 {
                     path = open.FileName;
-                    using (StreamReader reader = new StreamReader(path))
+                    if(Path.GetExtension(path)!=".txt")
                     {
-                        Value = reader.ReadToEnd();
-                        
+                        MessageBox.Show("Выбран файл с неправильным расширением\nВы можете выбрать файлы с расширением: \".txt\" ", "Ошибка", MessageBoxButtons.OK);
                     }
-                    FillMasA();
+                    else
+                    {
+                        using (StreamReader reader = new StreamReader(path))
+                        {
+                            Value = reader.ReadToEnd();
+                            if(Check(Value))
+                            {
+                                flagGenerate = false;
+                                flagPerform = true;
+                                return true;
+                            }
+                            else
+                            {
+                                Value = "";
+                            }
+                            
+                        }
+                    }
+
+                   
+                    
                 }
             }
             
-            flagPerform = true;
             return false;
         }
     }
